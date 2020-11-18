@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>Flask Template</title>
+ </head>
+ <body>
+ <form action="/result" method="POST">
+ <p>性別:<br>
+ <select name="gender">
+ <option value="male">男の子</option>
+ <option value="female">女の子</option>
+ </select></p>
+ 
+ <p>地域:<br>
+ <select name="region">
+ <option value="Sapporo">札幌</option>
+ <option value="Tokyo">東京</option>
+ <option value="Kobe">神戸</option>
+ <option value="Osaka">大阪</option>
+ <option value="Hakata">博多</option>
+ </select></p>
+ 
+ <p>お名前:<br>
+ <input type="text" name="name">
+ <p><input type="submit" value="送る" /></p>
+ </form>
+
+ </body>
+</html>
