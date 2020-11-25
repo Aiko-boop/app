@@ -37,7 +37,7 @@ def result():
     dates = []
 
     df = pd.read_csv("data_46.csv")
-    filtered_df = df.query("{0}-3<=`main.temp`<={0}+3 & {1}-3<=`main.humidity`<={1}+3".format(d["temp"],d["humidity"]),engine='numexpr')
+    filtered_df = df.query("{0}-3<=`main.temp`<={0}+3 & {1}-3<=`main.humidity`<={1}+3".format(d["気温"],d["湿度"]),engine='numexpr')
     for u in filtered_df['dt_iso']:
         result = re.search(r"[0-9]{4}-[0-9]{2}-[0-9]{2}",u)
         date = str(result.group().replace('-',''))
@@ -53,23 +53,23 @@ def result():
     if gender == "male":
         for item in list(set(dates)):
             try:
-                with open("file_man{}.csv".format(item)) as f:
-                    reader = csv.reader(f)
-                    for row in reader:
-                        male_rows.append(row)
+                with open("file_man{}.csv".format(item), "r") as ins:
+                    for line in ins:
+                        male_rows.append(line)
             except:
                 print("cannot found csv.")
                 pass
-
+        print(male_rows)
         return render_template('result.html', message=message, urls=male_rows, weather=todays_weather)
     
     else:
         for item in list(set(dates)):
             try:
-                with open("file{}.csv".format(item)) as f:
-                    reader = csv.reader(f)
-                    for row in reader:
-                        female_rows.append(row)
+                with open("file{}.csv".format(item),"r") as ins:
+                    for line in ins:
+                        female_rows.append(line)
+
+                    
             except:
                 print("cannot found csv.")
                 pass
