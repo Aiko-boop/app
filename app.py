@@ -18,21 +18,44 @@ def result():
 
     region = request.form.get('region')
     api_key = 'a09103f7f84acf2f773de5054185a05d'
-    api = 'http://api.openweathermap.org/data/2.5/forecast?units=metric&q={city}&APPID={key}&cnt={limit}'
+    api = 'http://api.openweathermap.org/data/2.5/forecast?units=metric&q={city}&appid={key}'
     city_name = region
-    request_line = 1
-    url = api.format(city = city_name, key = api_key, limit = request_line)
+    url = api.format(city = city_name, key = api_key)
     response = requests.get(url)
     data = response.json()
 
-    for i in data['list']:
-        temp = int(i['main']['temp'])
-        humidity = int(i['main']['humidity'])
-        weather = (i['weather'][0]['main'])
+    # 1. userの入力を受け取る・今日なのか明日なのか明後日なのか
+    # ２いつの天気なのかを見てりすとのどのいんでっくすからでーたをとりだすか決める
+
+    day = request.form.get('day')
+
+    if day == "today":  
+        temp = int(data['list'][1]['main']['temp'])
+        humidity = int(data['list'][1]['main']['humidity'])
+        weather = (data['list'][1]['weather'][0]['main'])
         keys = ["気温","湿度","天気"]
         values = [temp, humidity, weather]
         d = dict(zip(keys, values))
         todays_weather = d
+
+    if day == "tomorrow":
+        temp = int(data['list'][9]['main']['temp'])
+        humidity = int(data['list'][9]['main']['humidity'])
+        weather = (data['list'][9]['weather'][0]['main'])
+        keys = ["気温","湿度","天気"]
+        values = [temp, humidity, weather]
+        d = dict(zip(keys, values))
+        todays_weather = d
+
+    if day == "day_after_tomorrow":
+        temp = int(data['list'][17]['main']['temp'])
+        humidity = int(data['list'][17]['main']['humidity'])
+        weather = (data['list'][17]['weather'][0]['main'])
+        keys = ["気温","湿度","天気"]
+        values = [temp, humidity, weather]
+        d = dict(zip(keys, values))
+        todays_weather = d
+
     
     dates = []
 

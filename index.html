@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>Flask Template</title>
+ </head>
+ <body>
+ <form action="/result" method="POST">
+ <p>いつのコーデを選びますか？<br>
+ <select name="day">
+ <option value="today">今日</option>
+ <option value="tomorrow">明日</option>
+ <option value="day_after_tomorrow">明後日</option>
+ </select></p>
+
+ <p>性別:<br>
+ <select name="gender">
+ <option value="male">男の子</option>
+ <option value="female">女の子</option>
+ </select></p>
+ 
+ <p>地域:<br>
+ <select name="region">
+ <option value="Sapporo">札幌</option>
+ <option value="Tokyo">東京</option>
+ <option value="Kobe">神戸</option>
+ <option value="Osaka">大阪</option>
+ <option value="Fukuoka">福岡</option>
+ </select></p>
+ 
+ <p>お名前:<br>
+ <input type="text" name="name">
+ <p><input type="submit" value="送る" /></p>
+ </form>
+
+ </body>
+</html>
