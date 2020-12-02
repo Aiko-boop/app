@@ -2,13 +2,14 @@
 <html>
  <head>
  <title>Flask Template</title>
+ <link rel="stylesheet2" type="text/css" href="./style2.css">
  </head>
  <body>
  <p>{{ weather }}</p>
  <p>{{ message }}さんにぴったりの服をどうぞ</p>
  <ul>
  {% for url in urls %}
- <img src="{{ url }}"></img>
+ <img src="{{ url }}" width="300" heigtht="280"></img>
  {% endfor %}
  </ul>
  </body>
