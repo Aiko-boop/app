@@ -61,8 +61,6 @@ def result():
 
     
     dates = []
-    temp = []
-    humidity = []
     items = []
 
     df = pd.read_csv("data_46.csv")
