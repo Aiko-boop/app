@@ -7,6 +7,7 @@ import re
 import csv
 import numpy as np
 from scipy import spatial
+import itertools
 
 app = Flask(__name__)
 @app.route('/')
@@ -60,17 +61,25 @@ def result():
 
     
     dates = []
+    temp = []
+    humidity = []
+    items = []
 
     df = pd.read_csv("data_46.csv")
-    a = np.array([d["気温"],d["湿度"]])
-    b = np.array([df[['main.temp','main.humidity']]])
+
+    for item in list(zip(df['main.temp'],df['main.humidity'])):
+        items.append(list(item))
+    
+    b = np.array(list(itertools.chain.from_iterable([items])))
+    a = np.array([[d["気温"],d["湿度"]]])
     tree = spatial.cKDTree(b)
     mindist, minid = tree.query(a)
     keys2 = ['temp','humidity']
-    values2 = b[minid]
+    values2 = list(itertools.chain.from_iterable(b[minid]))
     d2 = dict(zip(keys2,values2))
+    print(d2)
 
-    filtered_df = df.query("`main.temp`={0} & `main.humidity`={1}".format(d2["temp"],d2["humidity"]),engine='numexpr')
+    filtered_df = df.query("`main.temp`=={0} & `main.humidity`=={1}".format(d2["temp"],d2["humidity"]),engine='python')
     for u in filtered_df['dt_iso']:
         result = re.search(r"[0-9]{4}-[0-9]{2}-[0-9]{2}",u)
         date = str(result.group().replace('-',''))
