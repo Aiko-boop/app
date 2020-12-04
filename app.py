@@ -71,17 +71,19 @@ def result():
     b = np.array(list(itertools.chain.from_iterable([items])))
     a = np.array([[d["気温"],d["湿度"]]])
     tree = spatial.cKDTree(b)
-    mindist, minid = tree.query(a)
-    keys2 = ['temp','humidity']
-    values2 = list(itertools.chain.from_iterable(b[minid]))
-    d2 = dict(zip(keys2,values2))
-    print(d2)
+    mindist, minid = tree.query(a,k=100)
+    print(list(itertools.chain.from_iterable(b[minid])))
 
-    filtered_df = df.query("`main.temp`=={0} & `main.humidity`=={1}".format(d2["temp"],d2["humidity"]),engine='python')
-    for u in filtered_df['dt_iso']:
-        result = re.search(r"[0-9]{4}-[0-9]{2}-[0-9]{2}",u)
-        date = str(result.group().replace('-',''))
-        dates.append(date)
+    for p in list(itertools.chain.from_iterable(b[minid])):
+        keys = ['temp','humidity']
+        values = p
+        d2 = dict(zip(keys,values))
+        print(d2)
+        filtered_df = df.query("`main.temp`=={0} & `main.humidity`=={1}".format(d2["temp"],d2["humidity"]),engine='python')
+        for u in filtered_df['dt_iso']:
+            result = re.search(r"[0-9]{4}-[0-9]{2}-[0-9]{2}",u)
+            date = str(result.group().replace('-',''))
+            dates.append(date)
     print(list(set(dates)))
 
     male_rows = []
