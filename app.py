@@ -71,7 +71,7 @@ def result():
     b = np.array(list(itertools.chain.from_iterable([items])))
     a = np.array([[d["気温"],d["湿度"]]])
     tree = spatial.cKDTree(b)
-    mindist, minid = tree.query(a,k=100)
+    mindist, minid = tree.query(a,k=50)
     print(list(itertools.chain.from_iterable(b[minid])))
 
     for p in list(itertools.chain.from_iterable(b[minid])):
