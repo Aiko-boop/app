@@ -63,7 +63,7 @@ def result():
     dates = []
     items = []
 
-    df = pd.read_csv("data_46.csv")
+    df = pd.read_csv("data_45.csv")
 
     for item in list(zip(df['main.temp'],df['main.humidity'])):
         items.append(list(item))
@@ -71,14 +71,12 @@ def result():
     b = np.array(list(itertools.chain.from_iterable([items])))
     a = np.array([[d["気温"],d["湿度"]]])
     tree = spatial.cKDTree(b)
-    mindist, minid = tree.query(a,k=50)
-    print(list(itertools.chain.from_iterable(b[minid])))
+    mindist, minid = tree.query(a,k=20)
 
     for p in list(itertools.chain.from_iterable(b[minid])):
         keys = ['temp','humidity']
         values = p
         d2 = dict(zip(keys,values))
-        print(d2)
         filtered_df = df.query("`main.temp`=={0} & `main.humidity`=={1}".format(d2["temp"],d2["humidity"]),engine='python')
         for u in filtered_df['dt_iso']:
             result = re.search(r"[0-9]{4}-[0-9]{2}-[0-9]{2}",u)
@@ -101,7 +99,6 @@ def result():
             except:
                 print("cannot found csv.")
                 pass
-        print(male_rows)
         return render_template('result.html', message=message, urls=male_rows, weather=todays_weather)
     
     else:

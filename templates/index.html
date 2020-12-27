@@ -2,27 +2,41 @@
 <html>
  <head>
  <title>Flask Template</title>
+ <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}?202012271913">
  </head>
  <body>
  <form action="/result" method="POST">
- <p>性別:<br>
- <select name="gender">
+ <p class="ex1">いつのコーデを選びますか？:<br>
+ <div class="select-container">
+ <select name="day" class="select" style="text-align: -webkit-center;">
+ <option value="today">今日</option>
+ <option value="tomorrow">明日</option>
+ <option value="day_after_tomorrow">明後日</option>
+ </select></p>
+ </div>
+ 
+
+ <p class="ex1">性別:<br>
+ <div class="select-container">
+ <select name="gender" class="select" style="text-align: -webkit-center;">
  <option value="male">男の子</option>
  <option value="female">女の子</option>
- </select></p>
+ </select></p></div>
  
- <p>地域:<br>
- <select name="region">
+ <p class="ex1">地域:<br>
+ <div class="select-container">
+ <select name="region" class="select" style="text-align: -webkit-center;">
  <option value="Sapporo">札幌</option>
  <option value="Tokyo">東京</option>
  <option value="Kobe">神戸</option>
  <option value="Osaka">大阪</option>
- <option value="Hakata">博多</option>
- </select></p>
+ <option value="Fukuoka">福岡</option>
+ </select></p></div>
  
- <p>お名前:<br>
- <input type="text" name="name">
- <p><input type="submit" value="送る" /></p>
+ <p class="ex1">お名前:<br>
+ <div>
+ <input type="text" name="name" class="textbox"></p>
+ <input type="submit" value="送る" class="btn-submit"></p></div>
  </form>
 
  </body>
