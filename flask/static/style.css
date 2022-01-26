@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
+
+
+body {
+    background: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(66, 66, 66);
+    margin-left:auto;
+    margin-right:auto;
+    font-family: 'Noto Sans JP', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    width : 20em;
+    font-size: 20px;
+}
+
+div {
+    text-align: center;
+}
+
+.ex1{
+    line-height: 20px;
+}
+
+.textbox {
+ border: solid 2px  rgb(206, 229, 233); 
+ padding: 10px;
+ background-color:  rgb(206, 229, 233);
+}
+
+.textbox:focus{
+    outline: rgb(206, 229, 233);
+    background-color:  rgb(206, 229, 233);
+}
+
+
+.select {
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    appearance: none;
+    width: 150px;
+    height: 50px;
+    border: 3px solid  rgb(206, 229, 233);
+    border-radius: 20px;
+    background-color:  rgb(206, 229, 233);
+    color:  rgb(66, 66, 66);
+    background-image:url(icon_arrow.png);
+    background-repeat: no-repeat;
+    background-size: 12px 10px;
+    background-position: right 10px center;
+}
+
+.select:focus{
+    outline: rgb(206, 229, 233);
+}
+
+.btn-submit{
+    width: 300px;
+    height: 50px;
+    padding: 5px 8px;
+    border-radius: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 4px solid rgb(129, 252, 231);
+    background-image: none;
+    background-color: rgb(27, 253, 215);
+    font-size: 24px;
+    color:  rgb(66, 66, 66);
+}
+.btn-submit:active{
+    border-bottom: none;
+    background-color:  rgb(129, 252, 231);
+}
+
